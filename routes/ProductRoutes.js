@@ -6,6 +6,7 @@ import {
   getProductById,
   updateProduct,
 } from "../controllers/ProductController.js";
+import { verifyToken, isAdmin } from "../middleware/authMiddleware.js";
 
 const productRouter = express.Router();
 
@@ -13,15 +14,20 @@ const productRouter = express.Router();
 productRouter.get("/getAllProductList", getAllProducts);
 
 // CREATE New product
-productRouter.get("/createProduct", createNewProduct);
+productRouter.get("/createProduct", verifyToken, isAdmin, createNewProduct);
 
 // GET product by ID
 productRouter.get("/getProductById/:id", getProductById);
 
 // PUT update product by ID
-productRouter.put("/updateProduct/:id", updateProduct);
+productRouter.put("/updateProduct/:id", verifyToken, isAdmin, updateProduct);
 
 // DELETE a product by ID
-productRouter.delete("/deleteProducts/:id", deleteProduct);
+productRouter.delete(
+  "/deleteProducts/:id",
+  verifyToken,
+  isAdmin,
+  deleteProduct
+);
 
 export default productRouter;
