@@ -1,8 +1,27 @@
 import express from "express";
-import { getAllProducts } from "../controllers/productController.js";
+import {
+  createNewProduct,
+  deleteProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+} from "../controllers/ProductController.js";
 
-const productRoutes = express.Router();
+const productRouter = express.Router();
 
-productRoutes.get("/getAllProducts", getAllProducts);
+// GET All product
+productRouter.get("/getAllProductList", getAllProducts);
 
-export default productRoutes;
+// CREATE New product
+productRouter.get("/createProduct", createNewProduct);
+
+// GET product by ID
+productRouter.get("/getProductById/:id", getProductById);
+
+// PUT update product by ID
+productRouter.put("/updateProduct/:id", updateProduct);
+
+// DELETE a product by ID
+productRouter.delete("/deleteProducts/:id", deleteProduct);
+
+export default productRouter;

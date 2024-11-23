@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import productRoutes from "./routes/productRoutes.js";
+import productRouter from "./routes/productRoutes.js";
 import { CommonError } from "./middleware/ErrorHandler.js";
 
 const app = express();
@@ -13,7 +13,7 @@ const ENV = dotenv.config().parsed;
 app.use(bodyParser.json());
 
 // Routes
-app.use("/api/v1", productRoutes);
+app.use("/api/v1", productRouter);
 
 // Error Handling Middleware
 app.use(CommonError);
