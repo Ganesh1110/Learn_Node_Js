@@ -3,7 +3,6 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import productRouter from "./routes/productRoutes.js";
 import { CommonError } from "./middleware/ErrorHandler.js";
-import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
@@ -14,7 +13,6 @@ const ENV = dotenv.config().parsed;
 app.use(bodyParser.json());
 
 // Routes
-app.use("/api/v1", authRoutes);
 app.use("/api/v1", productRouter);
 
 // Error Handling Middleware
